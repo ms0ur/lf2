@@ -1,0 +1,120 @@
+
+.RegisterPopup {
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    width: 466px;
+    height: 425px; 
+    padding: 20px;
+  }
+  
+  .closeButton {
+    align-self: flex-end;
+    cursor: pointer;
+  }
+  
+  .header {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .input2 {
+    position: relative;
+    top: 0;
+    left: 12px;
+  }
+
+  .input {
+    height: 40px;
+    width: 346px;
+    border-color: #EAEAEA;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 0 16px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .input::placeholder {
+    color: #B9B9B9;
+  }
+
+  .inputError {
+    transition: all 0.2s ease-in-out;
+    border-width: 2px;
+    border-color: #FC0D1C;
+  }
+
+  .error{
+    color: #FC0D1C;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .regButton {
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    width: 249px;
+    height: 40px;
+    background: #FC0D1C;
+    border-radius: 32px;
+    border: 0;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #FFFFFF;
+  }
+
+  .regButton:hover {
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .forgetPassButton {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #33353F;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonB2 {
+    position: relative;
+    top: 4px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
