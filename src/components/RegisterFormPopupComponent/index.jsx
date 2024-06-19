@@ -36,7 +36,7 @@ function RegisterFormPopup() {
             setErrorText('Введите E-mail')
             return
         }
-        if (!data.password.match(/[A-Za-z0-9!#$%&()*+\-/:;<=>?@[\\\]^_]+/) && data.password.length > 7) {
+        if (!data.password.match(/[A-Za-z0-9!#$%&()*+\-/:;<=>?@[\\\]^_]+/) || !(data.password.length > 8)) {
             setError(true)
             setErrorType('pass')
             setErrorText('Пароль должен быть длиннее 8 символов и может включать латинские буквы, цифры и специальные символы')
