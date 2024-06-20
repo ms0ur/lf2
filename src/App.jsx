@@ -1,4 +1,4 @@
-import RegisterFormPopup from "./components/RegisterFormPopupComponent"
+import RegisterFormPopup from "./components/register-form-popup-component/RegisterFormPopupComponent"
 import "./App.scss"
 
 function App() {
