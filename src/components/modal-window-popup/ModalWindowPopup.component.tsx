@@ -3,7 +3,7 @@ import styles from './ModalWindowPopup.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { EyesButton } from './eyes-button/EyesButton';
-import { schema } from '../../libs/validate-shema';
+import { schema } from '../../libs/utils/validate-shema';
 
 interface IRegisterFormContents {
     email: string;
@@ -33,118 +33,92 @@ export const ModalWindowPopup = () => {
 
     const handleKeyDown = (event: KeyboardEvent<HTMLFormElement>) => {
         if (event.key === ' ') {
-            event.preventDefault(); // Запрещаем ввод пробела
+            event.preventDefault();
         }
     };
     return (
-        <div className={styles.overlay}>
-            <form className={styles.popup} onKeyDown={handleKeyDown}>
+        <div className={styles['modal-window-popup']}>
+            <form
+                className={styles['modal-window-popup__form']}
+                onKeyDown={handleKeyDown}
+            >
                 <img
                     src="close.svg"
                     alt="Закрыть"
-                    className={styles.popup__button_close}
+                    className={styles['modal-window-popup__close-button']}
                 />
-                <div className={styles.forma}>
-                    <h1 className={styles.forma__header}>Войти по почте</h1>
-                    <div className={styles.forma__body}>
-                        <div className={styles.forma__body__wrapper}>
-                            <div className={styles.forma__body__wrapper__inputBox}>
-                                <input
-                                    {...register('email')}
-                                    type="text"
-                                    placeholder="E-mail"
-                                    className={
-                                        errors.email
-                                            ? styles.forma__body__wrapper__inputBox__input_error
-                                            : styles.forma__body__wrapper__inputBox__input
-                                    }
-                                    aria-invalid={errors.email ? 'true' : 'false'}
-                                />
-                            </div>
-                            <p
-                                className={
-                                    errors.email
-                                        ? styles.forma__body__wrapper__error
-                                        : styles.forma__body__wrapper__error_hidden
-                                }
-                            >
-                                {errors.email?.message}
-                            </p>
+                <div className={styles['modal-window-popup__content']}>
+                    <h1 className={styles['modal-window-popup__header']}>
+                        Войти по почте
+                    </h1>
+                    <div className={styles['modal-window-popup__body']}>
+                        <div className={styles['modal-window-popup__input-wrapper']}>
+                            <input
+                                {...register('email')}
+                                type="text"
+                                placeholder="E-mail"
+                                className={`${styles['modal-window-popup__input']} ${errors.email ? styles['modal-window-popup__input_error'] : ''}`}
+                                aria-invalid={errors.email ? 'true' : 'false'}
+                            />
+                            {errors.email && (
+                                <p className={styles['modal-window-popup__error']}>
+                                    {errors.email?.message}
+                                </p>
+                            )}
                         </div>
-                        <div className={styles.forma__body__wrapper}>
-                            <div className={styles.forma__body__wrapper__inputBox}>
-                                <input
-                                    {...register('password')}
-                                    type={showPas ? 'text' : 'password'}
-                                    placeholder="Пароль"
-                                    className={
-                                        errors.password
-                                            ? styles.forma__body__wrapper__inputBox__input_error
-                                            : styles.forma__body__wrapper__inputBox__input
-                                    }
-                                    aria-invalid={errors.password ? 'true' : 'false'}
-                                />
-                                <EyesButton
-                                    isShow={showPas}
-                                    className={
-                                        styles.forma__body__wrapper__inputBox__eyeBut1
-                                    }
-                                    onClick={() => setShowPas((pre) => !pre)}
-                                />
-                            </div>
-                            <p
-                                className={
-                                    errors.password
-                                        ? styles.forma__body__wrapper__error
-                                        : styles.forma__body__wrapper__error_hidden
-                                }
-                            >
-                                {errors.password?.message}
-                            </p>
+                        <div className={styles['modal-window-popup__input-wrapper']}>
+                            <input
+                                {...register('password')}
+                                type={showPas ? 'text' : 'password'}
+                                placeholder="Пароль"
+                                className={`${styles['modal-window-popup__input']} ${errors.password ? styles['modal-window-popup__input_error'] : ''}`}
+                                aria-invalid={errors.password ? 'true' : 'false'}
+                            />
+                            <EyesButton
+                                isShow={showPas}
+                                className={styles['modal-window-popup__eye-button']}
+                                onClick={() => setShowPas((pre) => !pre)}
+                            />
+                            {errors.password && (
+                                <p className={styles['modal-window-popup__error']}>
+                                    {errors.password?.message}
+                                </p>
+                            )}
                         </div>
-                        <div className={styles.forma__body__wrapper}>
-                            <div className={styles.forma__body__wrapper__inputBox}>
-                                <input
-                                    {...register('second-password')}
-                                    type={showSecPas ? 'text' : 'password'}
-                                    placeholder="Повторите пароль"
-                                    className={
-                                        errors['second-password']
-                                            ? styles.forma__body__wrapper__inputBox__input_error
-                                            : styles.forma__body__wrapper__inputBox__input
-                                    }
-                                    aria-invalid={
-                                        errors['second-password'] ? 'true' : 'false'
-                                    }
-                                />
-                                <EyesButton
-                                    isShow={showSecPas}
-                                    className={
-                                        styles.forma__body__wrapper__inputBox__eyeBut2
-                                    }
-                                    onClick={() => setShowSecPas((pre) => !pre)}
-                                />
-                            </div>
-                            <p
-                                className={
-                                    errors['second-password']
-                                        ? styles.forma__body__wrapper__error
-                                        : styles.forma__body__wrapper__error_hidden
+                        <div className={styles['modal-window-popup__input-wrapper']}>
+                            <input
+                                {...register('second-password')}
+                                type={showSecPas ? 'text' : 'password'}
+                                placeholder="Повторите пароль"
+                                className={`${styles['modal-window-popup__input']} ${errors['second-password'] ? styles['modal-window-popup__input_error'] : ''}`}
+                                aria-invalid={
+                                    errors['second-password'] ? 'true' : 'false'
                                 }
-                            >
-                                {errors['second-password']?.message}
-                            </p>
+                            />
+                            <EyesButton
+                                isShow={showSecPas}
+                                className={styles['modal-window-popup__eye-button']}
+                                onClick={() => setShowSecPas((pre) => !pre)}
+                            />
+                            {errors['second-password'] && (
+                                <p className={styles['modal-window-popup__error']}>
+                                    {errors['second-password']?.message}
+                                </p>
+                            )}
                         </div>
                     </div>
                 </div>
                 <button
-                    className={styles.button}
+                    className={styles['modal-window-popup__submit-button']}
                     type="button"
                     onClick={handleSubmit(submit)}
                 >
                     Зарегистрироваться
                 </button>
-                <a className={styles.link} href="#">
+                <a
+                    className={styles['modal-window-popup__forgot-password-link']}
+                    href="#"
+                >
                     Забыли пароль?
                 </a>
             </form>
